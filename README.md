@@ -1,41 +1,36 @@
-# Yonsei Qiskit Fall Fest (Beginner & Challenger) — Short README
+# Yonsei Qiskit Fall Fest 2025
 
-Overview
---------
-This workspace contains two tutorial notebooks for the Qiskit Fall Fest @ Yonsei 2025 event:
+**A notebook collection progressing from quantum-circuit fundamentals to hybrid circuit/observable experiments.**
 
-- [YonseiQiskitFallFest/qff25_yonsei_challenger.ipynb](YonseiQiskitFallFest/qff25_yonsei_challenger.ipynb) — challenger-level notebook (main focus).
-- [YonseiQiskitFallFest/qff25_yonsei_beginner.ipynb](YonseiQiskitFallFest/qff25_yonsei_beginner.ipynb) — beginner-level notebook.
+The repository contains the beginner and challenger materials for Yonsei's 2025 Qiskit Fall Fest. They combine explanations, circuit-building tasks, supplied grader calls and worked code for exploring quantum computation with Qiskit.
 
-Both notebooks demonstrate quantum simulation and experiment design using Qiskit and Qiskit addons. They include hands-on tasks (graded via an included grader) and example pipelines for Operator Backpropagation and the Elitzur–Vaidman bomb detector.
+## Choose a notebook
 
-Key code highlights
--------------------
-- Operator Backpropagation (Challenger notebook)
-  - Uses the `backpropagate()` routine from the OBP addon: [`qiskit_addon_obp.backpropagation.backpropagate`](qiskit_env/Lib/site-packages/qiskit_addon_obp/backpropagation.py)
-  - Builds Hamiltonians and time-evolution circuits via:
-    - [`qiskit_addon_utils.problem_generators.generate_xyz_hamiltonian`](qiskit_env/Lib/site-packages/qiskit_addon_utils/problem_generators/generate_xyz_hamiltonian.py)
-    - [`qiskit_addon_utils.problem_generators.generate_time_evolution_circuit`](qiskit_env/Lib/site-packages/qiskit_addon_utils/problem_generators/generate_time_evolution_circuit.py)
-  - Circuit slicing utilities:
-    - [`qiskit_addon_utils.slicing.slice_by_gate_types`](qiskit_env/Lib/site-packages/qiskit_addon_utils/slicing/__init__.py)
-    - [`qiskit_addon_utils.slicing.combine_slices`](qiskit_env/Lib/site-packages/qiskit_addon_utils/slicing/__init__.py)
+| Notebook | Topics |
+|---|---|
+| [Beginner](qff25_yonsei_beginner.ipynb) | Pauli and rotation gates, entanglement, dynamic circuits, visualization, parameterized circuits, transpilation, primitives and BB84 |
+| [Challenger](qff25_yonsei_challenger.ipynb) | Interferometer/bomb-detector experiments and operator backpropagation with Qiskit add-ons |
 
-- Bomb detector interferometer (Beginner & Challenger notebooks)
-  - Implements Mach–Zehnder interferometer circuits and grader-driven tasks:
-    - `make_no_bomb_circuit()` and `make_bomb_circuit()` appear in the challenger notebook (see the file link above).
+Start with the beginner notebook for circuit conventions and measurement. Move to the challenger notebook to inspect the trade-off between quantum circuit depth, classical observable complexity and approximation error.
 
-How to run
-----------
-1. Create / activate the Python venv (the repo already contains an example environment at `qiskit_env/`).
-2. Install the notebook prerequisites (notebook cells already show these commands):
-   - pip install qiskit_addon_obp qiskit_addon_utils
-   - pip install "qiskit[visualization]" qiskit-ibm-runtime qiskit-aer qiskit-addon-cutting
-3. Open and run the notebooks in order. Start with the beginner notebook to get familiar, then run the challenger notebook.
+## Environment
 
-Notes
------
-- The challenger notebook demonstrates trade-offs of OBP: reduced quantum circuit depth vs larger classical observable complexity and truncation error control.
-- The grader used by the notebooks is imported inside the notebooks (see the challenger notebook header). Run the setup cell before the graded cells.
-- Relevant source files for the addon functions are included in the Python site-packages under `qiskit_env/Lib/site-packages/` (links above).
+Use a fresh Python environment with Jupyter. The notebooks contain their own setup cells for Qiskit, Aer, IBM Runtime and the relevant add-ons.
 
-If you want a longer README or a CONTRIBUTING guide, I can expand this file.
+```bash
+python -m pip install jupyterlab
+python -m jupyter lab
+```
+
+Open a notebook and read its installation and grader-import cells before running later sections. The event grader is an external dependency, not a Python package bundled in this repository. Event-specific grading services may require their original environment.
+
+Most circuit examples can be studied locally. Hardware-specific sections additionally require your own provider access; the existence of a submission cell does not establish a completed physical-device run.
+
+## How to use the material
+
+- Inspect the circuit before its histogram or score.
+- Complete TODO cells and compare their output with the stated target behavior.
+- Separate sampling variation from a change in the underlying circuit.
+- For operator backpropagation, inspect both the reduced circuit and the transformed observable.
+
+These are educational and event materials, not an independent benchmark or a production quantum application. Retain the notebooks' original Quantum Informatics at Yonsei Academy copyright and attribution notices when sharing them.
